@@ -1,0 +1,55 @@
+-- Made by Jonesloto (UserID: 42161942)
+-- Date: 10/29/2020 EST
+-- Server Sided Module
+
+--[[
+    Framework API reference:
+
+    Roblox Services:
+
+    self.players
+    self.server_script_service
+    self.replicated_storage
+    self.physics_service
+    self.debris
+
+    Container References:
+
+    self.services - reference to the "services" container
+    self.classes - reference to the "classes" container
+    self.modules - reference to the "modules" container
+    self.shared_modules - reference to the "shared_modules" container
+    
+    Methods:
+
+    self:print_table(table_params)
+    self:signal_client(table_params)
+    self:signal_all_clients(table_params)
+    self:register_event(table_params)
+    self:register_function(table_params)
+    self:create_instance(table_params)
+    self:update_instance(table_params)
+    self:format_number(number)
+--]]
+
+local Leaderstats = {}
+
+Leaderstats.enabled = false
+
+function Leaderstats:set_enabled()
+    self.enabled = true
+end
+
+function Leaderstats:set_disabled()
+    self.enabled = false
+end
+
+function Leaderstats:load_for(player)
+    
+end
+
+function Leaderstats:start()
+    
+end
+
+return Leaderstats
