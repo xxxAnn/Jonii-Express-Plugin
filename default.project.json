@@ -5,8 +5,8 @@
     "ServerScriptService": {
       "$className": "ServerScriptService",
       "$ignoreUnknownInstances": true,
-      "Plugin": {
-        "$path": "Plugin"
+      "Jonii Express": {
+        "$path": "Jonii Express"
       }
     }
   }
