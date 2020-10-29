@@ -15,14 +15,17 @@ local function fetch_game_modules()
 
     if not game_server then
         game_server = script.Parent:WaitForChild("framework_model"):WaitForChild("GameServer"):Clone()
+        game_server.Parent = ServerScriptService
     end
 
     if not game_client then
         game_client = script.Parent:WaitForChild("framework_model"):WaitForChild("GameClient"):Clone()
+        game_client.Parent = StarterPlayer.StarterPlayerScripts
     end
 
     if not game_shared then
-        game_server = script.Parent:WaitForChild("framework_model"):WaitForChild("GameShared"):Clone()
+        game_shared = script.Parent:WaitForChild("framework_model"):WaitForChild("GameShared"):Clone()
+        game_shared.Parent = ReplicatedStorage
     end
 
     if game_server and game_client and game_shared then
