@@ -27,3 +27,7 @@
     self:update_instance(table_params)
     self:format_number(number)
 --]]
+
+local MyModule = {}
+
+return MyModule

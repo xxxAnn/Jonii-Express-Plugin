@@ -29,3 +29,7 @@
 
     self.player - reference to the client this script is running on
 --]]
+
+local MyModule = {}
+
+return MyModule
