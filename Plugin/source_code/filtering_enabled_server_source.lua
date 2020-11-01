@@ -1,5 +1,4 @@
---[[
-local FilteringEnabledServer = {}
+--[[local FilteringEnabledServer = {}
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 

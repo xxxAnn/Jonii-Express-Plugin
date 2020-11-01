@@ -1,5 +1,4 @@
---[[
-local NumberFormat = {}
+--[[local NumberFormat = {}
 
 local number_format_table = {
     {1e3, "K+"},

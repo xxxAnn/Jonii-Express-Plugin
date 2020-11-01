@@ -1,5 +1,4 @@
---[[
-local StartServer = {}
+--[[local StartServer = {}
 
 -- Roblox Services
 

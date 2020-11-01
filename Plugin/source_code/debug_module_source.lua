@@ -1,5 +1,4 @@
---[[
-local DebugModule = {}
+--[[local DebugModule = {}
 
 function DebugModule:print_table(tab, descendance)
     local indent = ""

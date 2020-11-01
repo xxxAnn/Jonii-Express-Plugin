@@ -1,5 +1,4 @@
---[[
-local FilteringEnabledClient = {}
+--[[local FilteringEnabledClient = {}
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 

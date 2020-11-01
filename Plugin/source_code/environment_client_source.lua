@@ -1,5 +1,4 @@
---[[
-local Environment = {}
+--[[local Environment = {}
 
 local StarterPlayer = game:GetService("StarterPlayer")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")

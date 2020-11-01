@@ -1,5 +1,4 @@
---[[
-local InstanceCreation = {}
+--[[local InstanceCreation = {}
 InstanceCreation.__index = InstanceCreation
 
 function InstanceCreation:create_instance(options)

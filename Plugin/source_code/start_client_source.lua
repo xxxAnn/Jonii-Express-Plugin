@@ -1,5 +1,4 @@
---[[
-local StartClient = {}
+--[[local StartClient = {}
 
 -- Roblox Services
 
