@@ -286,6 +286,8 @@ local function fetch_game_modules()
         loaded.Value = true
         loaded.Parent = ReplicatedStorage
     end
+
+    print("Fetched game modules for framework, ready to be used!")
 end
 
-fetch_game_modules()
+fetch_game_modules_button.Click:Connect(fetch_game_modules)
