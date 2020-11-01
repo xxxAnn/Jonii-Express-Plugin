@@ -128,7 +128,7 @@ local framework_model = {
         ["framework_runner_client"] = {
             ["name"] = "framework_runner_client";
 
-            ["class"] = "Script";
+            ["class"] = "LocalScript";
 
             ["source"] = source_code:WaitForChild("framework_runner_client_source");
 
@@ -225,29 +225,43 @@ local plugin_tool_bar = plugin:CreateToolbar("Jonii Express")
 
 local main_button = plugin_tool_bar:CreateButton("Jonii Express", "Jonii Express", "rbxassetid://3633860364")
 
-local function fetch_game_modules()
-    local framework_detected;
+local function convert_table_to_object(options)
+    options = options or {}
 
-    local game_server = ServerScriptService:FindFirstChild("GameServer")
-    local game_client = StarterPlayer.StarterPlayerScripts:FindFirstChild("GameClient")
-    local game_shared = ReplicatedStorage:FindFirstChild("GameClient")
+    local this_object = Instance.new(options.tab.class)
+    this_object.Name = options.tab.name
 
-    if not game_server then
-        game_server = script.Parent:WaitForChild("framework_model"):WaitForChild("GameServer"):Clone()
-        game_server.Parent = ServerScriptService
+    if (this_object.ClassName == "Script") or (this_object.ClassName == "LocalScript") (this_object.ClassName == "ModuleScript") then
+        this_object.Source = options.tab.source.Source:gsub("%[[--", ""):gsub("%--]]")
     end
 
-    if not game_client then
-        game_client = script.Parent:WaitForChild("framework_model"):WaitForChild("GameClient"):Clone()
-        game_client.Parent = StarterPlayer.StarterPlayerScripts
+    for _, v in pairs(options.tab) do
+        if typeof(v) == "table" then
+            convert_table_to_object {
+                tab = v;
+                parent = this_object;
+            }
+        end
     end
 
-    if not game_shared then
-        game_shared = script.Parent:WaitForChild("framework_model"):WaitForChild("GameShared"):Clone()
-        game_shared.Parent = ReplicatedStorage
-    end
-
-    if game_server and game_client and game_shared then
-        framework_detected = true
-    end
+    this_object.Parent = options.parent
 end
+
+local function fetch_game_modules()
+    convert_table_to_object {
+        tab = framework_model.GameServer;
+        parent = ServerScriptService;
+    }
+
+    convert_table_to_object {
+        tab = framework_model.GameClient;
+        parent = StarterPlayer.StarterPlayerScripts;
+    }
+
+    convert_table_to_object {
+        tab = framework_model.GameShared;
+        parent = ReplicatedStorage
+    }
+end
+
+fetch_game_modules()
