@@ -1,4 +1,4 @@
-local source_code; script.Parent.Parent:WaitForChild("source_code")
+local source_code = script.Parent.Parent.Parent:WaitForChild("source_code")
 
 return {
     ["GameServer"] = {

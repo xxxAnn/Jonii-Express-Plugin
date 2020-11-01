@@ -4,7 +4,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterPlayer = game:GetService("StarterPlayer")
 
-local framework_model = require(script.Parent.framework_builder.framework_model)
+local framework_model = require(script.framework_model)
 
 local LOADED = "JONII_EXPRESS_LOADED"
 
@@ -32,7 +32,7 @@ end
 
 function FrameworkBuilder:fetch_game_modules()
     if not (ServerScriptService:FindFirstChild(LOADED) and ServerScriptService[LOADED].Value) then
-        self:convert_table_to_object {
+        FrameworkBuilder:convert_table_to_object {
             tab = framework_model.GameServer;
             parent = ServerScriptService;
         }
@@ -44,7 +44,7 @@ function FrameworkBuilder:fetch_game_modules()
     end
 
     if not (StarterPlayer.StarterPlayerScripts:FindFirstChild(LOADED) and StarterPlayer.StarterPlayerScripts[LOADED].Value) then
-        self:convert_table_to_object {
+        FrameworkBuilder:convert_table_to_object {
             tab = framework_model.GameClient;
             parent = StarterPlayer.StarterPlayerScripts;
         }
@@ -56,7 +56,7 @@ function FrameworkBuilder:fetch_game_modules()
     end
 
     if not (ReplicatedStorage:FindFirstChild(LOADED) and ReplicatedStorage[LOADED].Value) then
-        self:convert_table_to_object {
+        FrameworkBuilder:convert_table_to_object {
             tab = framework_model.GameShared;
             parent = ReplicatedStorage
         }
