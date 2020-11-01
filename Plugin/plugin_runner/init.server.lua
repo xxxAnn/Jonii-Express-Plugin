@@ -7,7 +7,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterPlayer = game:GetService("StarterPlayer")
 
-local framework_builder = require(script.Parent.framework_builder)
+local framework_builder = require(script.framework_builder)
 
 local plugin_tool_bar = plugin:CreateToolbar("Jonii Express")
 
