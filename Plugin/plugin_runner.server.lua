@@ -231,7 +231,7 @@ local function convert_table_to_object(options)
     local this_object = Instance.new(options.tab.class)
     this_object.Name = options.tab.name
 
-    if (this_object.ClassName == "Script") or (this_object.ClassName == "LocalScript") (this_object.ClassName == "ModuleScript") then
+    if (this_object.ClassName == "Script") or (this_object.ClassName == "LocalScript") or (this_object.ClassName == "ModuleScript") then
         this_object.Source = options.tab.source.Source:gsub("%[[--", ""):gsub("%--]]", "")
     end
 
