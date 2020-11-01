@@ -221,9 +221,12 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterPlayer = game:GetService("StarterPlayer")
 
+local LOADED = "JONII_EXPRESS_LOADED"
+
 local plugin_tool_bar = plugin:CreateToolbar("Jonii Express")
 
 local main_button = plugin_tool_bar:CreateButton("Jonii Express", "Jonii Express", "rbxassetid://3633860364")
+local fetch_game_modules_button = plugin_tool_bar:CreateButton("Fetch Game Modules", "Fetch Game Modules", "rbxassetid://0")
 
 local function convert_table_to_object(options)
     options = options or {}
@@ -248,20 +251,41 @@ local function convert_table_to_object(options)
 end
 
 local function fetch_game_modules()
-    convert_table_to_object {
-        tab = framework_model.GameServer;
-        parent = ServerScriptService;
-    }
+    if not (ServerScriptService:FindFirstChild(LOADED) and ServerScriptService[LOADED].Value) then
+        convert_table_to_object {
+            tab = framework_model.GameServer;
+            parent = ServerScriptService;
+        }
 
-    convert_table_to_object {
-        tab = framework_model.GameClient;
-        parent = StarterPlayer.StarterPlayerScripts;
-    }
+        local loaded = Instance.new("BoolValue")
+        loaded.Name = LOADED
+        loaded.Value = true
+        loaded.Parent = ServerScriptService
+    end
 
-    convert_table_to_object {
-        tab = framework_model.GameShared;
-        parent = ReplicatedStorage
-    }
+    if not (StarterPlayer.StarterPlayerScripts:FindFirstChild(LOADED) and StarterPlayer.StarterPlayerScripts[LOADED].Value) then
+        convert_table_to_object {
+            tab = framework_model.GameClient;
+            parent = StarterPlayer.StarterPlayerScripts;
+        }
+
+        local loaded = Instance.new("BoolValue")
+        loaded.Name = LOADED
+        loaded.Value = true
+        loaded.Parent = StarterPlayer.StarterPlayerScripts
+    end
+
+    if not (ReplicatedStorage:FindFirstChild(LOADED) and ReplicatedStorage[LOADED].Value) then
+        convert_table_to_object {
+            tab = framework_model.GameShared;
+            parent = ReplicatedStorage
+        }
+
+        local loaded = Instance.new("BoolValue")
+        loaded.Name = LOADED
+        loaded.Value = true
+        loaded.Parent = ReplicatedStorage
+    end
 end
 
 fetch_game_modules()
