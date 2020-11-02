@@ -116,7 +116,7 @@ function Environment:add_environment_contents()
         extract_core_modules(core_module_container)
     end
 
-    extract_core_modules(SHARED_SOURCE.core_modules.modules)
+    extract_core_modules(SHARED_SOURCE.core_modules.shared_modules)
 end
 
 function Environment:start_controllers()
