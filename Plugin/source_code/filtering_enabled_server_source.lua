@@ -2,7 +2,7 @@
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local REMOTES_LOCATION = ReplicatedStorage:WaitForChild("GameShared"):WaitForChild("core_modules"):WaitForChild("modules")
+local REMOTES_LOCATION = ReplicatedStorage:WaitForChild("GameShared"):WaitForChild("core_modules"):WaitForChild("shared_modules")
 
 local remote_event;
 local remote_function;
