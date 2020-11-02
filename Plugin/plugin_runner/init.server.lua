@@ -14,11 +14,4 @@ local plugin_tool_bar = plugin:CreateToolbar("Jonii Express")
 local main_button = plugin_tool_bar:CreateButton("Jonii Express", "Jonii Express", "rbxassetid://3633860364")
 local fetch_game_modules_button = plugin_tool_bar:CreateButton("Fetch Game Modules", "Fetch Game Modules", "rbxassetid://0")
 
---[[
-1. Type of module? (service, class, module, controller, etc.)
-2. Module name
-3. Player name
-4. Date
---]]
-
 fetch_game_modules_button.Click:Connect(framework_builder.fetch_game_modules)
