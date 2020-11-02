@@ -1,0 +1,13 @@
+{
+  "name": "project",
+  "tree": {
+    "$className": "DataModel",
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "$ignoreUnknownInstances": true,
+      "Jonii Express": {
+        "$path": "Plugin"
+      }
+    }
+  }
+}
