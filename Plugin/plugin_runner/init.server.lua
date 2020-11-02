@@ -22,28 +22,87 @@ local fetch_game_modules_button = plugin_tool_bar:CreateButton("Fetch Game Modul
 --]]
 
 local function create_module(options)
-    local module_index = {
-        ["service"] = script.Parent.module_components.server_assets.service;
-        ["server_class"] = script.Parent.module_components.server_assets.server_class;
-        ["server_module"] = script.Parent.module_components.server_assets.server_module;
-
-        ["controller"] = script.Parent.module_components.client_assets.controller;
-        ["client_class"] = script.Parent.module_components.client_assets.client_class;
-        ["client_module"] = script.Parent.module_components.client_assets.client_module;
-
-        ["shared_class"] = script.Parent.module_components.shared_assets.shared_class;
-        ["shared_module"] = script.Parent.module_components.shared_assets.shared_module;
+    local sample_module_index = {
+        ["service"] = {
+            sample = script.Parent.module_components.server_assets.service;
+            location = ServerScriptService:WaitForChild("GameServer"):WaitForChild("core_modules"):WaitForChild("services");
+            sample_name = "MyService";
+        };
+    
+        ["server_class"] = {
+            sample = script.Parent.module_components.server_assets.server_class;
+            location = ServerScriptService:WaitForChild("GameServer"):WaitForChild("core_modules"):WaitForChild("classes");
+            sample_name = "MyClass";
+        };
+        
+        ["server_module"] = {
+            sample = script.Parent.module_components.server_assets.server_module;
+            location = ServerScriptService:WaitForChild("GameServer"):WaitForChild("core_modules"):WaitForChild("modules");
+            sample_name = "MyModule";
+        };
+    
+        ["controller"] = {
+            sample = script.Parent.module_components.client_assets.controller;
+            location = StarterPlayer.StarterPlayerScripts:WaitForChild("GameClient"):WaitForChild("core_modules"):WaitForChild("controllers");
+            sample_name = "MyController";
+        };
+    
+        ["client_class"] = {
+            sample = script.Parent.module_components.client_assets.client_class;
+            location = StarterPlayer.StarterPlayerScripts:WaitForChild("GameClient"):WaitForChild("core_modules"):WaitForChild("classes");
+            sample_name = "MyClass";
+        };
+    
+        ["client_module"] = {
+            sample = script.Parent.module_components.client_assets.client_module;
+            location = StarterPlayer.StarterPlayerScripts:WaitForChild("GameClient"):WaitForChild("core_modules"):WaitForChild("modules");
+            sample_name = "MyModule";
+        };
+    
+        ["shared_class"] = {
+            sample = script.Parent.module_components.shared_assets.shared_class;
+            location = ReplicatedStorage:WaitForChild("GameShared"):WaitForChild("core_modules"):WaitForChild("modules");
+            sample_name = "MyClass";
+        };
+    
+        ["shared_module"] = {
+            sample = script.Parent.module_components.shared_assets.shared_module;
+            location = ReplicatedStorage:WaitForChild("GameShared"):WaitForChild("core_modules"):WaitForChild("modules");
+            sample_name = "MyModule";
+        };
     }
 
-    if not module_index[options.module_type] then return warn("invalid source module type!") end
+    local loaded_server = ServerScriptService:FindFirstChild(framework_builder:get_load_keyword())
+    local loaded_client = StarterPlayer.StarterPlayerScripts:FindFirstChild(framework_builder:get_load_keyword())
+    local loaded_shared = ReplicatedStorage:FindFirstChild(framework_builder:get_load_keyword())
 
-    local module = module_index[options.module_type]:Clone()
+    if not (loaded_server and loaded_client and loaded_shared) then return warn("Did not detect Jonii Express environment. Failed to create module.") end
 
-    module.Name = options.module_name
+    local module_type = options.module_type
+    local module_name = options.module_name
+    local player_name = options.player_name
 
-    -- TODO: I left off here
+    if not sample_module_index[module_type] then return warn("invalid source module type!") end
+
+    local module = sample_module_index[module_type].sample:Clone()
+
+    module.Name = module_name
+
+    module.Source = module.Source:gsub("%-- Created by user", "-- Created by "..player_name):gsub("%-- Date: 99/99/9999", "-- Date: "..os.date("%x", tick()))
+
+    if module_name then
+        module.Source = module.Source:gsub(sample_module_index[module_type].sample_name, module_name)
+    end
+
+    module.Parent = sample_module_index[module_type].location
 end
 
+framework_builder:fetch_game_modules()
 
+create_module {
+    module_type = "service";
+    module_name = "my_service";
+    player_name = "Jonesloto"
+}
 
-fetch_game_modules_button.Click:Connect(framework_builder.fetch_game_modules)
+-- fetch_game_modules_button.Click:Connect(framework_builder.fetch_game_modules)

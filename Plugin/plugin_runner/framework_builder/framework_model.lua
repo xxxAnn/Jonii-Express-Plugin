@@ -3,7 +3,6 @@ local source_code = script.Parent.Parent.Parent:WaitForChild("source_code")
 return {
     ["GameServer"] = {
         ["name"] = "GameServer";
-
         ["class"] = "Folder";
 
         ["core_modules"] = {
@@ -28,9 +27,7 @@ return {
 
         ["framework_runner_server"] = {
             ["name"] = "framework_runner_server";
-
             ["class"] = "Script";
-
             ["source"] = source_code:WaitForChild("framework_runner_server_source");
 
             ["injected_methods"] = {
@@ -64,8 +61,7 @@ return {
             };
 
             ["misc"] = {
-                ["name"] = "injected_methods";
-                
+                ["name"] = "misc";
                 ["class"] = "Folder";
 
                 ["debug_module"] = {
@@ -97,7 +93,6 @@ return {
 
     ["GameClient"] = {
         ["name"] = "GameClient";
-
         ["class"] = "Folder";
 
         ["core_modules"] = {
@@ -122,14 +117,11 @@ return {
 
         ["framework_runner_client"] = {
             ["name"] = "framework_runner_client";
-
             ["class"] = "LocalScript";
-
             ["source"] = source_code:WaitForChild("framework_runner_client_source");
 
             ["injected_methods"] = {
                 ["name"] = "injected_methods";
-
                 ["class"] = "Folder";
 
                 ["filtering_enabled_client"] = {
@@ -158,8 +150,7 @@ return {
             };
 
             ["misc"] = {
-                ["name"] = "injected_methods";
-                
+                ["name"] = "misc";
                 ["class"] = "Folder";
 
                 ["debug_module"] = {
@@ -191,7 +182,6 @@ return {
 
     ["GameShared"] = {
         ["name"] = "GameShared";
-
         ["class"] = "Folder";
 
         ["core_modules"] = {

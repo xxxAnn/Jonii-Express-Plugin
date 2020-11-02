@@ -8,6 +8,10 @@ local framework_model = require(script.framework_model)
 
 local LOADED = "JONII_EXPRESS_LOADED"
 
+function FrameworkBuilder:get_load_keyword()
+    return LOADED
+end
+
 function FrameworkBuilder:convert_table_to_object(options)
     options = options or {}
 
