@@ -1,0 +1,8 @@
+{
+    "Lua.diagnostics.disable": [
+        "undefined-rbx-member"
+    ],
+    "Lua.diagnostics.globals": [
+        "warn"
+    ]
+}
