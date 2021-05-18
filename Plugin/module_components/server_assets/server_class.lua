@@ -34,14 +34,4 @@
     self:format_number(number)
 --]]
 
-local MyClass = {}
-MyClass.__index = MyClass
-
-function MyClass:new(options)
-    -- construct object
-    local object = {}
-
-    return setmetatable(object, MyClass)
-end
-
-return MyClass
+return require(script.Parent.Parent.class)()

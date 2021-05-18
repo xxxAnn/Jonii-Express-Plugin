@@ -36,14 +36,4 @@
     self.player - reference to the client this script is running on
 --]]
 
-local MyClass = {}
-MyClass.__index = MyClass
-
-function MyClass:new(options)
-    -- construct object
-    local object = {}
-
-    return setmetatable(object, MyClass)
-end
-
-return MyClass
+return require(script.Parent.Parent.class)()
